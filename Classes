@@ -2,17 +2,16 @@ import random
 import pygame
 
 class interactiveobject:
-    def __init__(self, image, posx, posy, display, *selected):
-        self.image = pygame.image.load(image + ".png")
-        self.path = image
-        self.posx = posx
+    def __init__(self, image, posx, posy, display): #instantiates the variables that would be used
+        self.image = pygame.image.load(image + ".png") # locates the image 
+        self.path = image # the image variable will be a path as a string
+        self.posx = posx #defining co-ordinates of the image
         self.posy = posy
-        self.display = display
-        self.rect = pygame.Rect((self.posx, self.posy), (self.image.get_width(), self.image.get_height()))
-        self.selected = selected
-
+        self.display = display # shows which screen it will be displayed on
+        self.rect = pygame.Rect((self.posx, self.posy), (self.image.get_width(), self.image.get_height())) # creates a rectangle around it, which can be interacted with
+        
     def draw(self):
-        self.display.blit(self.image, (self.posx, self.posy))
+        self.display.blit(self.image, (self.posx, self.posy)) # displays the image onto the screen
 
 
 class Deck:
@@ -85,13 +84,13 @@ class button(interactiveobject):
                     function()
 
 class money:
-    def __init__(self, cash):
+    def __init__(self, cash): #initalises the amount of cash so that the next few functions can work on it
         self.cash = cash
     
-    def increase(self, amount):
+    def increase(self, amount): # increases amount of cash
         self.cash += amount
 
-    def decrease(self, amount):
+    def decrease(self, amount): # decreases amount of cash
         self.cash -= amount
 
     def display(self, xpos, ypos, text, font, size):
@@ -100,7 +99,7 @@ class money:
 
 class player(money, Deck):
     def __init__(self, cash, display, path):
-        self.diction = {}
+        self.diction = {} # 
         self.cash = cash
         self.display = display
         self.path = path
